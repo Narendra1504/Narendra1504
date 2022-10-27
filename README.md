@@ -1,16 +1,46 @@
-### Hi there 👋
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.177.0/containers/javascript-node
+// -
+{
+	"name": "docs.github.com",
+	"build": {
+		"dockerfile": "Dockerfile",
+		// Update 'VARIANT' to pick a Node version: 12, 14, 16
+		"args": { "VARIANT": "16" }
+	},
 
-<!--
-**UserXX087y38295/UserXX087y38295** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+	// Set *default* container specific settings.json values on container create.
+	"settings": {
+		"terminal.integrated.shell.linux": "/bin/bash",
+		"cSpell.language": ",en"
+	},
 
-Here are some ideas to get you started:
+	// Install features. Type 'feature' in the VS Code command palette for a full list.
+	"features": {
+		"git-lfs": "latest",
+		"sshd": "latest"
+	 },
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+	// Visual Studio Code extensions which help authoring for docs.github.com.
+	"extensions": [
+		"dbaeumer.vscode-eslint",
+		"sissel.shopify-liquid",
+		"davidanson.vscode-markdownlint",
+		"bierner.markdown-preview-github-styles",
+		"streetsidesoftware.code-spell-checker",
+		"alistairchristie.open-reusables"
+	],
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [4000],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "git lfs pull && npm ci",
+
+	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "node"
+,
+	"hostRequirements": {
+		"memory": "8gb"
+	 }
+}
